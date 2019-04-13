@@ -1,8 +1,6 @@
 # rewrite 指令介绍
 
 > 参考
-> 1. <https://www.cnblogs.com/minirice/p/8872093.html>
-> 2. <http://nginx.org/en/docs/http/ngx_http_rewrite_module.html>
 
 ## rewrite regex replacement [flag]
 
