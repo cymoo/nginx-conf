@@ -31,7 +31,7 @@ upstream backend {
 
 * 设定 nginx 与服务器通信的尝试失败的次数，在 fail_timeout 参数定义的时间段内，如果失败的次数达到此值，nginx 就认为服务器不可用
 * 在下一个 fail_timeout 时间段，服务器不会再被尝试；失败的尝试次数默认是1；设为0就会停止统计尝试次数，认为服务器是一直可用的
-* 可以通过指令 [proxy_next_upstream](./proxy.md#proxy_next_upstream) 等来配置什么是失败的尝试。 默认配置时，http_404 状态不被认为是失败的尝试。
+* 可以通过指令 [proxy_next_upstream](./proxy.md#proxy_next_upstream-error--timeout--invalid_header--http_500--http_502--http_503--http_504--http_404--off-error-timeout) 等来配置什么是失败的尝试。 默认配置时，http_404 状态不被认为是失败的尝试。
 
 ### fail_timeout=time
 
