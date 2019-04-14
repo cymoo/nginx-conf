@@ -70,6 +70,28 @@ location ~ ^/users/(.+\.(?:gif|jpe?g|png))$ {
 * 可直接进行重定向：error_page 404 http://foo.com
 * 若无需改变 URI，可将错误处理转到一个转到一个 named location
 
+```nginx.conf
+    # 发起一个内部重定向至指定的 URI，client 的请求方法会变为 GET
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    # 将 status code 变为200
+    error_page 404 =200 /empty.gif;
+
+    # error response 由代理服务器处理，且可能返回不同的 status code
+    error_page 404 = /to-proxy;
+
+    # 使用 named location，内部重定向不改变 URL 和 method
+    error_page 404 = @fallback;
+    location @fallback {
+        proxy_pass http://backend;
+    }
+
+    # 使用 URL redirect，默认返回302
+    # error_page 403 http://example.com/forbidden.html;
+    # error_page 404 =301 http://example.com/notfound.html;
+```
+
 ## types {...} {text/html html; image/gif gif; image/jpeg jpg;}
 
 * 设置文件扩展名和响应的 MIME 类型的映射表

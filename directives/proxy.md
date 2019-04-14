@@ -1,10 +1,5 @@
 # proxy模块常见指令解释
 
-参考
-
-1. <http://tengine.taobao.org/nginx_docs/cn/docs/http/ngx_http_proxy_module.html>
-2. <http://nginx.org/en/docs/http/ngx_http_proxy_module.html>
-
 ## proxy_pass URL
 
 * 设置后端服务器的协议和地址，还可以设置可选的URI以定义本地路径和后端服务器的映射关系

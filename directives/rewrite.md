@@ -35,3 +35,33 @@
 * return code text：响应内容，code不能为重定向的 30x
 * return code URL：URL 为 http:// 或 https:// 等绝对URL，code 只能为 30x
 * return URL：code 默认为302， URL 同上
+
+## 示例
+
+```nginx.conf
+server {
+    listen 3456;
+    default_type text/plain;
+    root /path/to/root;
+
+    if ($http_user_agent !~* webkit) {
+        return 403 "you are a robot;
+    }
+
+    rewrite ^/foo/(.*) /$1;
+    rewrite ^/bar/(.*) /$1 last;
+    rewrite ^/fox/(.*) /$1;
+
+    location ~ /capture/(?<path>.+) {
+        return 200 "/capture/$path";
+    }
+
+    location /audio {
+        rewrite ^/audio/foo/(.*) /$1;
+        rewrite ^/audio/bar/(.*) /$1 break;
+        rewrite ^/audio/bax/(.*) /$1;
+
+        return 200 "audio: $uri; $request_filename";
+    }
+}
+```

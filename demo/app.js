@@ -1,6 +1,8 @@
 const fs = require('fs')
 const http = require('http')
 
+const PORT = process.env.PORT || 3000
+
 const server = http.createServer((req, res) => {
   res.statusCode = 200
   switch (req.url) {
@@ -44,6 +46,6 @@ const server = http.createServer((req, res) => {
   }
 })
 
-server.listen(3000, () => {
-  console.log('server running at 3000...')
+server.listen(PORT, () => {
+  console.log(`server running at ${PORT}...`)
 })

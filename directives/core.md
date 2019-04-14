@@ -18,6 +18,25 @@
 * 第二个参数定了日志级别，按照严重性从轻到重列出
 * 设置为某个日志级别会将指定级别和更好级别的日志记录下来，nginx 默认使用 error 级别
 
+## access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]] | off (access_log logs/access.log combined)
+
+* 该指令位于 ngx_http_log_module 模块中，按照指定的格式写入访问日志，如果没有指定格式，则使用预定义的格式 combined
+* 如果使用了 buffer (64K) 或 gzip (1)，写日志将先被缓冲，缓冲区的大小不能超过磁盘文件原子性写入的大小（多少？）
+* 日志文件的路径可以包含变量，具体注意事项见 <http://nginx.org/en/docs/http/ngx_http_log_module.html>
+* if 参数可以激活条件日志，如果 condition 为 "" 或 "0"，日志就不会被记录，如下：
+
+```nginx.conf
+map $status $loggable {
+    ~^[23]  0;
+    default 1;
+}
+access_log /path/to/access.log combined if=$loggable;
+```
+
+## log_format name [escape=default|json|none] string .. (log_format combined "...")
+
+* 指定日志格式，日志格式允许包含普通变量和只在日志写入时存在的变量，日志变量参考 <http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format>
+
 ## worker_processes number | auto (1)
 
 * 定义工作进程的数量
