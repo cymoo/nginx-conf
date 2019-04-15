@@ -38,6 +38,8 @@
 
 * [单页面（SPA）](./spa.conf)
 
+* [auth-basic 验证](./auth_basic.conf)
+
 ## 性能优化
 
 * [nginx高并发下的优化](https://segmentfault.com/a/1190000011405320)
