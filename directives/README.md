@@ -11,6 +11,7 @@
 2. [HTTP模块](./http.md)
 3. [proxy模块](./proxy.md)
 4. [rewrite模块](./rewrite.md)
-5. [负载均衡模块](./upstream.md)
+5. [gzip模块](./gzip.md)
+6. [负载均衡模块](./upstream.md)
 
 总结的指令均为有可能使用到的，因此某些冷僻的指令没有包含进来

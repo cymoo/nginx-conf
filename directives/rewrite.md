@@ -1,7 +1,5 @@
 # rewrite 指令介绍
 
-> 参考
-
 ## rewrite regex replacement [flag]
 
 * 之前的 query string 会被附在 replacement 后面，如果要避免这种情况，需要在 replacement 后面加 上 ?

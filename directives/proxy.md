@@ -1,4 +1,4 @@
-# proxy模块常见指令解释
+# proxy 指令解释
 
 ## proxy_pass URL
 
@@ -77,7 +77,7 @@
 * 若开启，在发送 request 给后端服务器之前，nginx 会读取整个 request body；否则 request body 会立即传送给后端服务器
 * 若禁用，如果nginx已经开始发送 request body，则该请求无法传递给 upstream 中配置的其他 server
 
-## proxy_limit_reate rate (0)
+## proxy_limit_rate rate (0)
 
 * 限制从被代理服务器读取响应的速率，单位为 byte/s
 * 对单个请求进行限制，且只会在 buffering 开启的时候才生效
@@ -91,7 +91,7 @@
 
 * 指定用于页面缓冲的共享内存，同一块共享内存可以在多个地方使用，off参数可以取消从上层继承的缓存功能
 
-## proxy_cache_path [levels=levels] keys_zone=name:size [inactive=time] [max_size=size] ...
+## proxy_cache_path path [levels=levels] keys_zone=name:size [inactive=time] [max_size=size] ...
 
 * path: 设置缓存的路径
 * levels：缓存的层次结构，最多3个层次，每层取值为1或2
@@ -116,7 +116,7 @@
 
 ## proxy_no_cache
 
-* 定义 ningx 不将响应写入缓存的条件，如果至少一个字符串条件为空而且非 “0”，nginx 就不将响应写入缓存
+* 定义 nginx 不将响应写入缓存的条件，如果至少一个字符串条件为空而且非 “0”，nginx 就不将响应写入缓存
 * 例子：proxy_no_cache $cookie_nocache $arg_nocache$arg_comment
 * 例子：proxy_no_cache $http_pragma $http_authorization
 

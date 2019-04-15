@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
   switch (req.url) {
     case '/':
       res.setHeader('Content-Type', 'text/plain')
-      res.end('hello nodejs')
+      res.end('hello nginx')
       break
     case '/img':
       var thatDay =  new Date()

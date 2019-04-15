@@ -52,7 +52,7 @@ location ~ ^/users/(.+\.(?:gif|jpe?g|png))$ {
 * 文件路径是根据 root 指令和 alias 指令，将 file 参数拼接而成，如果找不到任何文件，将按最后一个参数指定的 uri 进行内部跳转
 * 最后一个参数也可以为 named location 和 code
 
-## location
+## location [ = | ~ | ~* | ^~ ] uri { ... } | @name { ... }
 
 * 路径匹配在 URI 规范化后进行，即现将 URI 中形为 %XX 的编码字符进行解码，再解析 URI 中的相对路径 . 和 .. 部分，并将多个 / 压缩为一个
 * 可使用前缀字符串或正则定义路径
@@ -158,5 +158,14 @@ location ~ ^/users/(.+\.(?:gif|jpe?g|png))$ {
 * HTTP 请求行的长度不能超过一块缓冲的容量，否则 nginx 返回错误 414 (Request-URI Too Large) 到客户端
 * 每个请求头的长度也不能超过一块缓冲的容量，否则 nginx 返回错误 400 (Bad Request) 到客户端
 * 缓冲是按需分配
+
+## keepalive_requests number (100)
+
+* 设置通过一个长连接可以处理的最大请求数，请求数超过此值，长连接将关闭
+
+## keepalive_timeout timeout [header_timeout] (75s)
+
+* 第一个参数设置客户端的长连接在服务器端保持的最长时间（在此时间客户端未发起新请求，则长连接关闭）
+* 第二个参数为可选项，设置“Keep-Alive: timeout=time”响应头的值。 可以为这两个参数设置不同的值（与第一个有何区别？）
 
 ## 变量
