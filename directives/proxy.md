@@ -190,8 +190,10 @@ server {
 * timeout：和后端服务器建立连接时，或者向后端服务器发送请求时，或者从后端服务器接收响应头时，出现超时
 * 只有在没有向客户端发送任何数据以前，将请求转给下一台后端服务器才是可行的；如果在传输响应到客户端时出现错误或者超时，这类错误是不可能恢复的
 
-## proxy_next_stream_tries number (0)
+## proxy_next_upstream_tries number (0)
 
+* Limits the number of possible tries for passing a request to the next server.
+* The 0 value turns off this limitation.
 * 设置重试次数，0表示不限制，注意重试次数指的是所有请求次数（包括第一次和之后的重试次数之和）
 * 在 proxy_next_upstream_timeout 时间内允许 proxy_next_upstream_tries 次重试
 * 如果超过其中一个设置，则 ningx 也会结束重试并返回客户端响应（可能是错误码）
@@ -199,6 +201,11 @@ server {
   1. [nginx 重试引发 http 请求重复执行](https://blog.csdn.net/jackpk/article/details/54632468)
   2. [nginx 超时重试机制及潜在的坑](https://www.dutycode.com/nginx_chongshi_chongfuqingqiu.html)
   3. [nginx 的失败重试及重试潜在的坑](http://www.dczou.com/viemall/603.html)
+
+## proxy_next_upstream_timeout time (0)
+
+* Limits the time during which a request can be passed to the next server.
+* The 0 value turns off this limitation.
 
 ## proxy_connect_timeout time (60s)
 
