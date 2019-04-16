@@ -28,6 +28,8 @@
 
 ## 常见配置
 
+* [基本配置](./nginx.conf)
+
 * [anti-host-spoofing](./no_spoof.conf)
 
 * [目录服务](./files.conf)
@@ -48,6 +50,8 @@
 
 * [nginx负载均衡高可用](http://www.uml.org.cn/zjjs/201808214.asp)
 
-## 其他
+## 参考资料
 
-* [nginx基本知识汇总](https://zhuanlan.zhihu.com/p/62264210)
+* [nginx wiki](https://www.nginx.com/resources/wiki/start/)
+
+* [common mistakes](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
