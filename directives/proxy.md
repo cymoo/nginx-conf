@@ -12,7 +12,7 @@
 * 例子
 
 ```nginx.conf
-# /foo/bar => /foo/bar 
+# /foo/bar => /foo/bar
 location /foo {
     proxy_buffering off;
     proxy_pass http://127.0.0.1:19000;
@@ -146,7 +146,7 @@ location /fox {
 * 如果仅仅指定了 time，proxy_cache_valid 5m 那么只有200，300和302的响应会被缓冲
 * 如果使用了 any 参数，那么可以缓存任何响应，proxy_cache_valid any 1m
 
-## proxy_cache_use_stale ...
+## proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ... (off)
 
 * 如果后端服务器出现状况，nginx 可以使用过期的响应缓存，指令参数与 proxy_next_upstream相同
 
