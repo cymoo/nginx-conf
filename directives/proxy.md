@@ -9,6 +9,25 @@
   * 若 proxy_pass 中包含路径，则 location 中的路径被 proxy 中对应的路径替换
   * 若 location 使用了正则，proxy_pass最好不要有路径
   * 若在proxy_pass前使用了rewrite，则proxy_pass无效
+* 例子
+
+```nginx.conf
+# /foo/bar => /foo/bar 
+location /foo {
+    proxy_buffering off;
+    proxy_pass http://127.0.0.1:19000;
+}
+
+# /bar/foo => //foo
+location /bar {
+    proxy_pass http://127.0.0.1:19000/;
+}
+
+# /fox/foo/bar => /hello/foo/bar
+location /fox {
+    proxy_pass http://127.0.0.1:19000/hello;
+}
+```
 
 ## proxy_redirect default | off | redirect replacement (default)
 
@@ -137,6 +156,28 @@
 * 如果设置为 on，nginx 将文件保存在 alias 指令或 root 指令设置的路径中，如果设置为 off，nginx 将关闭文件保存的功能
 * 保存的文件名也可以使用含变量的 string 参数来指定：proxy_store /data/www$original_uri
 * 保存文件的修改时间根据接收到的 Last-Modified 响应头来设置，响应是先写到临时文件，然后进行重命名生成的
+* 例子
+
+```nginx.conf
+server {
+    listen 4096;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+    }
+    location /img/ {
+        root /home/jie/desktop/playground/nginx/store;
+        error_page 404 = @fetch;
+    }
+    location @fetch {
+        internal;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_store on;
+        proxy_store_access user:rw group:rw all:r;
+        proxy_temp_path /home/jie/desktop/playground/nginx/tmp;
+        root /home/jie/desktop/playground/nginx/store;
+    }
+}
+```
 
 ## proxy_store_access users:permissions ... (user:rw)
 
